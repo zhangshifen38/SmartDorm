@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.dormsys.mapper.MapperCheckout">
+    <insert id="insCheckout" parameterType="com.app.dormsys.entities.Checkout">
+        insert into checkout_applications values (#{checkoutno},#{sdate},#{edate},
+                                                    #{checkoutdate},#{state},
+                                                    #{reason},#{students_sno},
+                                                    #{dorms_dno},#{buildings_bno})
+    </insert>
+    <select id="selCheckout" resultType="com.app.dormsys.entities.Checkout">
+        select * from checkout_applications where students_sno=#{sno}
+    </select>
+    <select id="selCheckoutCount" resultType="Integer">
+        select count(*) from checkout_applications where checkoutno like #{cno}
+    </select>
+</mapper>

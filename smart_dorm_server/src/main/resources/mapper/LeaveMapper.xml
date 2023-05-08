@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.dormsys.mapper.MapperLeave">
+    <insert id="insLeave" parameterType="com.app.dormsys.entities.Leave">
+        insert into leave_applications values (#{leaveno},#{sdate},#{edate},
+                                               #{leavedate},#{backdate},#{state},
+                                               #{reason},#{students_sno},
+                                               #{dorms_dno},#{buildings_bno})
+    </insert>
+    <select id="selLeave" resultType="com.app.dormsys.entities.Leave">
+        select * from leave_applications where students_sno=#{sno}
+    </select>
+    <select id="selLeaveforWno" resultType="com.app.dormsys.entities.Leave">
+        select *
+        from leave_applications
+        where buildings_bno=(
+            select buildings_bno
+            from admins_has_buildings
+            where admins_wno=#{wno}
+            ) and state='未处理';
+    </select>
+    <update id="updateLeavebyWno" parameterType="String">
+        update leave_applications
+        set state=#{state},edate=#{edate}
+        where leaveno=#{lno}
+    </update>
+    <select id="selLeaveCount" resultType="Integer">
+        select count(*) from leave_applications where leaveno like #{lno}
+    </select>
+</mapper>

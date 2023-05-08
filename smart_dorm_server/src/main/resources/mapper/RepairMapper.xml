@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.dormsys.mapper.MapperRepair">
+    <select id="selRepairstoStu" parameterType="String" resultType="com.app.dormsys.entities.Repair">
+        select *
+        from repair_applications
+        where dorms_dno=(
+            select dorms_dno
+            from students
+            where sno=#{sno}
+            )
+    </select>
+    <select id="selRepairstoWno" parameterType="String" resultType="com.app.dormsys.entities.Repair">
+        select *
+        from repair_applications
+        where buildings_bno=(
+            select buildings_bno
+            from admins_has_buildings
+            where wno=#{wno}
+        )
+    </select>
+    <select id="selRepairCount" resultType="Integer">
+        select count(*) from repair_applications where repairno like #{rno}
+    </select>
+    <insert id="insRepairbySno" parameterType="com.app.dormsys.entities.Repair">
+        insert into repair_applications values (#{repairno},#{itemname},#{sdate},
+                                                #{edate},#{repairdate},
+                                                #{reason}, #{state},
+                                               #{dorms_dno},#{buildings_bno})
+    </insert>
+    <update id="updateRepairbyWno" parameterType="String">
+        update repair_applications
+        set state = #{state}
+        where repairno=#{rno};
+    </update>
+</mapper>

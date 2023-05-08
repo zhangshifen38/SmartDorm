@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Repair</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!----webfonts--->
+	<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!---//webfonts--->
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/controller.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body onload="accom_loading()">
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<img src=".\images\neu_logo2.png" width="150px" style="margin-top: 5px;">
+				<!-- <a class="navbar-brand" href="index.html"></a> -->
+			</div>
+			<form class="navbar-form navbar-right">
+				<input type="text" class="form-control" value="Search..." onfocus="this.value = '';"
+					onblur="if (this.value == '') {this.value = 'Search...';}">
+			</form>
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="main.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>主页面</a>
+						</li>
+						<li>
+							<a href="validation.html">
+								<i class="fa fa-user nav_icon"></i> 个人信息
+								<!-- <span class="fa arrow"></span> -->
+							</a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-indent nav_icon"></i> 退/换宿申请<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="accom-check-out.html">退宿申请</a>
+								</li>
+								<li>
+									<a href="accom-change.html">换宿申请</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="accom-leave.html"><i class="fa fa-users nav_icon"></i> 请假申请</a>
+						</li>
+						<li>
+							<a href="electric.html"><i class="fa fa-rmb nav_icon"></i> 电费查询</a>
+						</li>
+						<li>
+							<a href="repair.html"><i class="fa fa-comment nav_icon"></i> 报修</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+		<div id="page-wrapper">
+			<div class="graphs">
+				<div class="xs">
+					<h3>报修</h3>
+					<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label for="stu-id" class="col-sm-2 control-label">学号</label>
+									<div class="col-sm-8">
+										<input type="text" id="stu-id" class="form-control1" placeholder="学号">
+									</div>
+									<!-- <div class="col-sm-2">
+										<p class="help-block">Your help text!</p>
+									</div> -->
+								</div>
+								<div class="form-group">
+									<label for="stu-name" class="col-sm-2 control-label">姓名</label>
+									<div class="col-sm-8">
+										<input id="stu-name" type="text" class="form-control1" placeholder="姓名">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="stu-bno" class="col-sm-2 control-label">宿舍楼栋号</label>
+									<div class="col-sm-8">
+										<input id="stu-bno" type="text" class="form-control1" placeholder="如：F01">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="stu-dno" class="col-sm-2 control-label">宿舍号</label>
+									<div class="col-sm-8">
+										<input type="text" id="stu-dno" class="form-control1" placeholder="如：0201">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="repairdate" class="col-sm-2 control-label">期望报修日期</label>
+									<input id="repairdate" type="date" class="ng-invalid ng-invalid-required"
+										ng-model="model.date" required="" onchange="repair_change()"
+										style="margin-left: 15px; font-weight: 300; font-size: 0.85em; border: 1px solid #e0e0e0;">
+								</div>
+								<div class="form-group">
+									<label for="itemname" class="col-sm-2 control-label">报修物品</label>
+									<div class="col-sm-8">
+										<input onchange="repair_change()" type="text" id="itemname"
+											class="form-control1" placeholder="报修物品">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">报修原因</label>
+									<div class="col-sm-8">
+										<textarea id="reason" onchange="repair_change()"
+											class="form-control1 control2"></textarea>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<!-- <div class="bs-example" data-example-id="form-validation-states">
+						<form>
+							<div class="form-group has-success">
+								<label class="control-label" for="inputSuccess1">Input with success</label>
+								<input type="text" class="form-control1" id="inputSuccess1">
+							</div>
+							<div class="form-group has-warning">
+								<label class="control-label" for="inputWarning1">Input with warning</label>
+								<input type="text" class="form-control1" id="inputWarning1">
+							</div>
+							<div class="form-group has-error">
+								<label class="control-label" for="inputError1">Input with error</label>
+								<input type="text" class="form-control1" id="inputError1">
+							</div>
+						</form>
+					</div> -->
+					<div class="panel-body">
+					</div>
+					<div class="bs-example" data-example-id="form-validation-states-with-icons">
+						<form>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="form-group" style="margin-left: 20px; font-size: 30px;">
+										<button type="submit" id="repair-submit" onclick="repair_submit()"
+											class="btn btn-primary" disabled="true">提交</button>
+										<!-- <button type="reset" class="btn btn-default">重置</button> -->
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="copy_layout">
+					<p>Copyright &copy; 2023.智能化宿舍管理系统研发团队 All rights reserved.
+						<!-- <a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;
+				        						</a> -->
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<!-- Nav CSS -->
+	<link href="css/custom.css" rel="stylesheet">
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="js/metisMenu.min.js"></script>
+	<script src="js/custom.js"></script>
+</body>
+
+</html>

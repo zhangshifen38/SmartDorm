@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>查询统计</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="css/lines.css" rel='stylesheet' type='text/css' />
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!----webfonts--->
+	<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!---//webfonts--->
+	<!-- Nav CSS -->
+	<link href="css/custom.css" rel="stylesheet">
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="js/metisMenu.min.js"></script>
+	<script src="js/custom.js"></script>
+	<!-- Graph JavaScript -->
+	<script src="js/d3.v3.js"></script>
+	<script src="js/rickshaw.js"></script>
+
+	<script src="https://kit.fontawesome.com/9e92935ccb.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<img src=".\images\neu_logo2.png" width="150px" style="margin-top: 5px;">
+				<!-- <a class="navbar-brand" href="index.html"></a> -->
+			</div>
+
+			<form class="navbar-form navbar-right">
+				<input type="text" class="form-control" value="Search..." onfocus="this.value = '';"
+					onblur="if (this.value == '') {this.value = 'Search...';}">
+			</form>
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="hostel-main.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>主页面</a>
+						</li>
+						<!-- <li>
+										<a href="validation.html">
+											<i class="fa fa-user nav_icon"></i> 个人信息
+										</a>
+									</li> -->
+
+						<li>
+							<a href="hostel-query.html"> <i class="fa-solid fa-clipboard-question nav_icon"></i>
+								查询统计</a>
+						</li>
+						<li>
+							<a href="hostel-leave.html"><i class="fa fa-users nav_icon"></i> 请假处理</a>
+						</li>
+						<li>
+							<a href="hostel-annouce.html"><i class="fa fa-bullhorn nav_icon"></i> 发布通知
+								<!-- <span class="fa arrow"></span> -->
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+		<div id="page-wrapper">
+			<div class="graphs">
+				<div class="content_bottom">
+					<h3 style="margin-bottom: 20px;"><strong>功能</strong></h3>
+					<div class="col_3">
+
+						<div class="col-md-3 widget widget1">
+							<div class="r3_counter_box">
+								<a href="hostel-query.html">
+									<i class="pull-left fa fa-clipboard-question user1 icon-rounded"></i>
+									<div class="stats">
+										<h5><strong>查询统计</strong></h5>
+										<span>查询学生详细住宿信息</span>
+									</div>
+								</a>
+
+							</div>
+						</div>
+						<div class="col-md-3 widget widget1">
+							<div class="r3_counter_box">
+								<a href="hostel-leave.html">
+									<i class="pull-left fa fa-users user2 icon-rounded"></i>
+									<div class="stats">
+										<h5><strong>请假处理</strong></h5>
+										<span>处理学生请假单</span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-3 widget">
+							<div class="r3_counter_box">
+								<a href="hostel-annouce.html">
+									<i class="pull-left fa fa-bullhorn dollar1 icon-rounded"></i>
+									<div class="stats">
+										<h5><strong>发布公告</strong></h5>
+										<span>发布本楼栋相关通知</span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+
+				<div class="content_bottom" id="queryPane">
+					<div class="col-md-8 span_3" style="margin-bottom: 25px;">
+						<div class="bs-example1">
+							<div class="form-group">
+								<div class="col-sm-8" style="width: 20%; margin-right: 40px;">
+									<select v-model="checkedVal" @change="getCheckedVal" name="selector" id="selector"
+										class="form-control1">
+										<option value="none" selected disabled hidden>请选择查询条件</option>
+										<option value="sno">按学号查询</option>
+										<option value="dno">按宿舍号查询</option>
+									</select>
+								</div>
+								<label style="margin-top: 8px; width: 11%;" for="focusedinput"
+									class="col-sm-2 control-label">学号/宿舍号:</label>
+								<div class="col-sm-8" style="width: 30%;">
+									<input type="text" v-model="sdno" class="form-control1" id="focusedinput"
+										placeholder="学号/宿舍号" required>
+								</div>
+								<button type="submit" class="btn btn-primary" id="query-submit" @click="getInfo"
+									style="float: right">查询</button>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+					<div class="col-md-8 span_3" style="margin-bottom: 25px;">
+						<div class="bs-example1">
+							<div style="height: 500px;" v-show="defaultShow"></div>
+
+							<form v-show="stuShow"
+								class=" form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern">
+								<fieldset>
+									<div class="form-group">
+										<label class="control-label">姓名</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_name"
+											placeholder="刘润根">
+									</div>
+									<div class="form-group">
+										<label class="control-label">性别</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_sex"
+											placeholder="男">
+									</div>
+									<div class="form-group">
+										<label class="control-label">学号</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_id"
+											placeholder="20205869">
+									</div>
+									<div class="form-group">
+										<label class="control-label">学院</label>
+										<!-- <input disabled="" type="text" class="form-control1" v-model="stu_college" placeholder="信息学院"> -->
+										<input disabled="" type="text" class="form-control1" v-model="stu_college"
+											placeholder="计算机科学与工程学院">
+									</div>
+									<div class="form-group">
+										<label class="control-label">专业</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_department"
+											placeholder="计算机科学与技术">
+									</div>
+									<div class="form-group">
+										<label class="control-label">班级</label>
+										<input type="text" class="form-control1" v-model="stu_class" disabled=""
+											placeholder="计算机2001班">
+									</div>
+									<div class="form-group">
+										<label class="control-label">电话</label>
+										<input type="text" class="form-control1" v-model="stu_phone" disabled=""
+											placeholder="13812345678">
+									</div>
+									<div class="form-group">
+										<label class="control-label">楼栋号</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_bno"
+											placeholder="F05">
+									</div>
+									<div class="form-group">
+										<label class="control-label">宿舍号</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_dno"
+											placeholder="B103">
+									</div>
+									<div class="form-group">
+										<label class="control-label">在校状态</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_status"
+											placeholder="在校">
+									</div>
+									<div class="form-group">
+										<label class="control-label">门禁权限</label>
+										<input disabled="" type="text" class="form-control1" v-model="stu_access"
+											placeholder="可出入">
+									</div>
+								</fieldset>
+							</form>
+
+							<form v-show="dormShow"
+								class=" form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern">
+								<fieldset>
+									<div class="form-group">
+										<label class="control-label">宿舍号</label>
+										<input disabled="" type="text" class="form-control1" v-model="dno"
+											placeholder="宿舍号">
+									</div>
+									<div class="form-group">
+										<label class="control-label">宿舍容量</label>
+										<input disabled="" type="text" class="form-control1" v-model="dcapacity"
+											placeholder="宿舍容量">
+									</div>
+									<div class="form-group">
+										<label class="control-label">楼栋号</label>
+										<input disabled="" type="text" class="form-control1" v-model="bno"
+											placeholder="楼栋号">
+									</div>
+									<div class="form-group">
+										<label class="control-label">水电费</label>
+										<input disabled="" type="text" class="form-control1" v-model="dcharge"
+											placeholder="?">
+									</div>
+								</fieldset>
+							</form>
+						</div>
+
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+
+				<script>
+					new Vue({
+						el: "#queryPane",
+						data: {
+							defaultShow: true, // 控制默认面板
+							stuShow: false, // 学号搜索的结果面板
+							dormShow: false, // 控制宿舍号搜索的结果面板
+							checkedVal: '', // 保存下拉框选中的值
+							sdno: '', // 宿舍号或学号
+
+							// 学生信息
+							stu_name: '',
+							stu_sex: '',
+							stu_id: '',
+							stu_college: '',
+							stu_department: '',
+							stu_class: '',
+							stu_phone: '',
+							stu_bno: '',
+							stu_dno: '',
+							stu_status: '',
+							stu_access: '',
+
+							// 宿舍信息
+							dno: '',
+							dcapacity: '',
+							bno: '',
+							dcharge: ''
+						},
+						created() { // 不加这个，下拉框初始化会是空白
+							this.checkedVal = 'none';
+						},
+						methods: {
+							getCheckedVal() {
+								console.log(this.checkedVal);
+							},
+							getInfo() {
+								console.log(this.checkedVal);
+								if (this.checkedVal === 'none') {
+									alert("请输入查询条件！")
+								}
+								// 输入的是学号
+								else if (this.checkedVal === 'sno') {
+									this.stuShow = true;
+									this.dormShow = false;
+									this.defaultShow = false;
+									var user = sessionStorage.getItem("CounselorUserName");
+									axios.get('http://localhost:8888/StudentInfotoWno', {
+										params: {
+											wno: user,
+											sno: this.sdno
+										}
+									}).then(response => {
+										this.stu_name = response.data.sname;
+										this.stu_sex = response.data.ssex;
+										this.stu_id = response.data.sno;
+										this.stu_college = response.data.scol;
+										this.stu_department = response.data.sdept;
+										this.stu_class = response.data.sclass;
+										this.stu_phone = response.data.stel;
+										this.stu_bno = response.data.buildings_bno;
+										this.stu_dno = response.data.dorms_dno;
+										this.stu_status = response.data.state;
+										this.stu_access = response.data.access;
+										console.log("获取机器列表成功")
+									})
+								}
+								else if (this.checkedVal === 'dno') {
+									this.stuShow = false;
+									this.dormShow = true;
+									this.defaultShow = false;
+									var user = sessionStorage.getItem("CounselorUserName");
+									axios.get('http://localhost:8888/getDormbyDno', {
+										params: {
+											dno: this.sdno,
+											wno: user
+										}
+
+									}).then(response => {
+										this.dno = response.data.dno;
+										this.dcapacity = response.data.dsize;
+										this.bno = response.data.buildings_bno;
+										this.dcharge = response.data.dcharge;
+										console.log("获取机器列表成功")
+
+									})
+								}
+							}
+						}
+					})
+				</script>
+
+				<div class="copy">
+					<p>Copyright &copy; 2023.智能化宿舍管理系统研发团队 All rights reserved.
+						<!-- <a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;
+						</a> -->
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

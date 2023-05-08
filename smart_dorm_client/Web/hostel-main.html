@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>宿管主页</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="css/lines.css" rel='stylesheet' type='text/css' />
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!----webfonts--->
+	<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!---//webfonts--->
+	<!-- Nav CSS -->
+	<link href="css/custom.css" rel="stylesheet">
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="js/metisMenu.min.js"></script>
+	<script src="js/custom.js"></script>
+	<!-- Graph JavaScript -->
+	<script src="js/d3.v3.js"></script>
+	<script src="js/rickshaw.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://kit.fontawesome.com/9e92935ccb.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="js/hostelcontroller.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+</head>
+
+<body onload="index_loading()">
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<img src=".\images\neu_logo2.png" width="150px" style="margin-top: 5px;">
+				<!-- <a class="navbar-brand" href="index.html"></a> -->
+			</div>
+
+			<div style="position: absolute; left: 50%; top: 20%;">
+				<p id="hello" style="color: aliceblue;">你好！</p>
+			</div>
+
+			<form class="navbar-form navbar-right">
+				<input type="text" class="form-control" value="Search..." onfocus="this.value = '';"
+					onblur="if (this.value == '') {this.value = 'Search...';}">
+			</form>
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="hostel-main.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>主页面</a>
+						</li>
+						<!-- <li>
+										<a href="validation.html">
+											<i class="fa fa-user nav_icon"></i> 个人信息
+										</a>
+									</li> -->
+
+						<li>
+							<a href="hostel-query.html"> <i class="fa-solid fa-clipboard-question nav_icon"></i>
+								查询统计</a>
+						</li>
+						<li>
+							<a href="hostel-leave.html"><i class="fa fa-users nav_icon"></i> 请假处理</a>
+						</li>
+						<li>
+							<a href="hostel-annouce.html"><i class="fa fa-bullhorn nav_icon"></i> 发布通知
+								<!-- <span class="fa arrow"></span> -->
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+		<div id="page-wrapper">
+			<div class="graphs">
+				<div class="content_bottom">
+					<h3 style="margin-bottom: 20px;"><strong>功能</strong></h3>
+					<div class="col_3">
+
+						<div class="col-md-3 widget widget1">
+							<div class="r3_counter_box">
+								<a href="hostel-query.html">
+									<i class="pull-left fa fa-clipboard-question user1 icon-rounded"></i>
+									<div class="stats">
+										<h5><strong>查询统计</strong></h5>
+										<span>查询学生详细住宿信息</span>
+									</div>
+								</a>
+
+							</div>
+						</div>
+						<div class="col-md-3 widget widget1">
+							<div class="r3_counter_box">
+								<a href="hostel-leave.html">
+									<i class="pull-left fa fa-users user2 icon-rounded"></i>
+									<div class="stats">
+										<h5><strong>请假处理</strong></h5>
+										<span>处理学生请假单</span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-3 widget">
+							<div class="r3_counter_box">
+								<a href="hostel-annouce.html">
+									<i class="pull-left fa fa-bullhorn dollar1 icon-rounded"></i>
+									<div class="stats">
+										<h5><strong>发布公告</strong></h5>
+										<span>发布本楼栋相关通知</span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+
+				<div class="content_bottom">
+					<h3 style="margin-bottom: 20px;"><strong>最新通知</strong></h3>
+					<div class="col-md-8 span_3">
+						<div class="bs-example1" data-example-id="contextual-table">
+							<!-- 每一行都需要一个额外的 <tr> 元素来包装，每个单元格的内容都应该写在 <td>中 -->
+							<table id="get_announce" class="table"
+								style="border-collapse:separate; border-spacing: 0 10px;">
+								<thead>
+									<tr>
+										<th>标题</th>
+										<th>发布时间</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="active" v-for="item in announce_list">
+										<td>
+											{{item.title}}
+										</td>
+										<td>{{item.sdate.substr(0,10)}}</td>
+										<td>
+											<button type="button" class="btn btn-primary" data-toggle="modal"
+												data-target="#announce" @click="showAnnounce(item)">
+												查看详情
+											</button>
+										</td>
+
+									</tr>
+									<div id="showDetails"></div>
+
+								</tbody>
+							</table>
+							<script>
+								new Vue({
+									el: "#get_announce",
+									data: {
+										isShow: false,
+										announce_list: [
+											{
+												title: "无",
+												sdate: "无",
+												text: "无"
+											},
+											{
+												title: "1",
+												sdate: "2",
+												text: "3"
+											}
+										]
+
+									},
+									methods: {
+										GetHostData: function () {
+											var User = sessionStorage.getItem("CounselorUserName");
+											axios.get('http://localhost:8888/getAnnouncestoWno', {
+												params: {
+													wno: User
+												}
+											}).then(response => {
+												if (response.data.length !== 0) {
+													this.announce_list = response.data;
+													console.log(response.data);
+													console.log("获取机器列表成功")
+												} else {
+													console.error("获取机器列表失败")
+												}
+											})
+										},
+										showAnnounce(item) {
+											this.isShow = true;
+											var tmp = document.getElementById("showDetails");
+											tmp.innerHTML = `<div id="announce" class="modal fade in" tabindex="-1" role="dialog"
+											aria-labelledby="myModalLabel" aria-hidden="false">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true" @click="closeAnnounce(item)">×</button>
+														<h2 class="modal-title">`+ item.title + `</h2>
+													</div>
+													<div class="modal-body">
+														<h2>`+ item.title + `</h2>
+														<textarea style="width: 100%; height: 500px; border: none;"
+															disabled>
+																								`+ item.text + `
+																							</textarea>
+													</div>
+												</div>
+											</div>
+										</div>`
+										},
+										closeAnnounce(item) {
+											this.isShow = false;
+
+										}
+									},
+									mounted: function () {   //自动触发写入的函数
+										this.GetHostData();
+									}
+								})
+							</script>
+							<nav>
+								<ul class="pagination pagination-lg">
+									<li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+
+					<div class="clearfix"> </div>
+				</div>
+
+				<div class="copy">
+					<p>Copyright &copy; 2023.智能化宿舍管理系统研发团队 All rights reserved.
+						<!-- <a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;
+						</a> -->
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

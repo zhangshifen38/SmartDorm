@@ -1,0 +1,1 @@
+export const IpPort = 'http://localhost:8888';

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.dormsys.mapper.MapperAnnounce">
+    <select id="selAnnouncestoStu" parameterType="String" resultType="com.app.dormsys.entities.Announces">
+        select *
+        from announces
+        where buildings_bno=(
+            select buildings_bno
+            from students
+            where sno=#{sno}
+        )
+    </select>
+    <select id="selAnnounceCount" resultType="String">
+        select max(announceno) from announces where announceno like #{ano}
+    </select>
+    <select id="selAdminshasBuilding" parameterType="String" resultType="String">
+        select buildings_bno
+        from admins_has_buildings
+        where admins_wno=#{wno}
+    </select>
+    <select id="selAnnouncestoWno" parameterType="String" resultType="com.app.dormsys.entities.Announces">
+        select *
+        from announces
+        where admins_wno=#{wno}
+    </select>
+
+    <insert id="insAnnouncebyWno" parameterType="com.app.dormsys.entities.Announces">
+        insert into announces values (#{announceno},#{sdate},
+                                      #{title},#{text},
+                                      #{buildings_bno},#{admins_wno});
+    </insert>
+
+    <delete id="delAnnouncebyWno" parameterType="String">
+        delete from announces where  announceno=#{ano}
+    </delete>
+    <update id="updateAnnouncebyWno" parameterType="String">
+        update announces
+        set title = #{title},text=#{text}
+        where announceno=#{ano};
+    </update>
+</mapper>

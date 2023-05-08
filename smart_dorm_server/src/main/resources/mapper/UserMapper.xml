@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.dormsys.mapper.MapperUsers">
+    <select id="selUser" resultType="com.app.dormsys.entities.Users" parameterType="String">
+        Select uno,upass,utype from users where uno=#{uno}
+    </select>
+    <update id="updatePass" parameterType="String">
+        Update users
+        set upass=#{newpassword}
+        where uno=#{uno}
+    </update>
+</mapper>
+

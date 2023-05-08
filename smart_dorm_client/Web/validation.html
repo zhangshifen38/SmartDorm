@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Personal Information</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+  <script
+    type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel='stylesheet' type='text/css' />
+  <link href="css/font-awesome.css" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="js/jquery.min.js"></script>
+  <!----webfonts--->
+  <!-- <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'> -->
+  <!---//webfonts--->
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="js/controller.js"></script>
+
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
+</head>
+
+<body onload="person_info_loading()">
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src=".\images\neu_logo2.png" width="150px" style="margin-top: 5px;">
+        <!-- <a class="navbar-brand" href="index.html"></a> -->
+      </div>
+
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" value="Search..." onfocus="this.value = '';"
+          onblur="if (this.value == '') {this.value = 'Search...';}">
+      </form>
+      <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+          <ul class="nav" id="side-menu">
+            <li>
+              <a href="main.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>主页面</a>
+            </li>
+            <li>
+              <a href="validation.html">
+                <i class="fa fa-user nav_icon"></i> 个人信息
+                <!-- <span class="fa arrow"></span> -->
+              </a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-indent nav_icon"></i> 退/换宿申请<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="accom-check-out.html">退宿申请</a>
+                </li>
+                <li>
+                  <a href="accom-change.html">换宿申请</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="accom-leave.html"><i class="fa fa-users nav_icon"></i> 请假申请</a>
+            </li>
+            <li>
+              <a href="electric.html"><i class="fa fa-rmb nav_icon"></i> 电费查询</a>
+            </li>
+            <li>
+              <a href="repair.html"><i class="fa fa-comment nav_icon"></i> 报修</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+      </div>
+      <!-- /.navbar-static-side -->
+    </nav>
+    <div id="page-wrapper">
+      <div class="col-md-12 graphs">
+        <div class="xs">
+          <h3>个人信息</h3>
+          <div class="well1 white">
+            <form
+              class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern">
+              <fieldset>
+                <div class="form-group">
+                  <label class="control-label">姓名</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-name" placeholder="张三">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">性别</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-sex" placeholder="女">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">学号</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-id" placeholder="2292020220xxxx">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">学院</label>
+                  <!-- <input disabled="" type="text" class="form-control1" id="stu-college" placeholder="信息学院"> -->
+                  <input disabled="" type="text" class="form-control1" id="stu-college" placeholder="?">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">系别</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-department" placeholder="软件工程系">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">班级</label>
+                  <input type="text" class="form-control1" id="stu-class" οnfοcus="this.select()" onblur="checkClass()"
+                    oninput="canSubmit()">
+                  <p class=" help-block" id="help-block-class"></p>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">电话</label>
+                  <input type="text" class="form-control1" id="stu-phone" required="" οnfοcus="this.select()"
+                    onblur="checkPhone()" oninput="canSubmit()">
+                  <p class="help-block" id="help-block-phone"></p>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">楼栋号</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-bno" placeholder="F01">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">宿舍号</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-dno" placeholder="0201">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">在校状态</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-status" placeholder="在校">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">门禁权限</label>
+                  <input disabled="" type="text" class="form-control1" id="stu-access" placeholder="可出入">
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary" id="person-info-submit" disabled="true"
+                    onclick="personinfo_submit()">保存</button>
+                  <button type="reset" class="btn btn-default" onclick="peron_info_reset()">重置</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+
+          <div id="changePassBtnDiv"
+            style="margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center;">
+            <button onclick="changePass()" class="btn btn-primary">修改密码</button>
+          </div>
+
+          <div id="changePassDiv" style="display: none; margin-top: 30px; margin-bottom: 30px;">
+            <div class="bs-example1">
+              <!-- 每一行都需要一个额外的 <tr> 元素来包装，每个单元格的内容都应该写在 <td>中 -->
+              <table class="table" style="width:60%; margin: 0 auto;">
+                <tbody id="pass-table">
+                  <tr>
+                    <td style="text-align: right; width: 40%;">旧密码</td>
+                    <td>
+                      <input type="text" id="pass-old">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right;">新密码</td>
+                    <td>
+                      <input type="text" id="pass">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right;">确认密码</td>
+                    <td>
+                      <input type="text" id="confirm-pass">
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <p class="help-block" id="help-block-pass"></p>
+              <div style="display:flex; justify-content: center;">
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary" style="margin-right: 50px;"
+                    onclick="changePassSubmit()">修改</button>
+                  <button class="btn btn-default" onclick="changePassCancel()">取消</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 30px; margin-bottom: 30px;">
+            <div class="bs-example1" data-example-id="contextual-table">
+              <!-- 每一行都需要一个额外的 <tr> 元素来包装，每个单元格的内容都应该写在 <td>中 -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 60%;">退宿申请</th>
+                    <th style="width: 20%;">处理时间</th>
+                    <th>状态</th>
+                  </tr>
+                </thead>
+                <tbody id="accom-checkout-table">
+                  <!-- <tr class="info">
+                    <td>
+                      退宿申请<br>
+                      拟退宿时间：2022.6.13<br>
+                      退宿原因：毕业
+                    </td>
+                    <td>2022.7.4</td>
+                    <td>通过</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style="margin-top: 30px; margin-bottom: 30px;">
+            <div class="bs-example1" data-example-id="contextual-table">
+              <!-- 每一行都需要一个额外的 <tr> 元素来包装，每个单元格的内容都应该写在 <td>中 -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 60%;">换宿申请</th>
+                    <th style="width: 20%;">处理时间</th>
+                    <th>状态</th>
+                  </tr>
+                </thead>
+                <tbody id="accom-change-table">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div style="margin-top: 30px; margin-bottom: 30px;">
+            <div class="bs-example1" data-example-id="contextual-table">
+              <!-- 每一行都需要一个额外的 <tr> 元素来包装，每个单元格的内容都应该写在 <td>中 -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 60%;">请假申请</th>
+                    <th style="width: 20%;">处理时间</th>
+                    <th>状态</th>
+                  </tr>
+                </thead>
+                <tbody id="leave-table">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div style="margin-top: 30px; margin-bottom: 30px;">
+            <div class="bs-example1" data-example-id="contextual-table">
+              <!-- 每一行都需要一个额外的 <tr> 元素来包装，每个单元格的内容都应该写在 <td>中 -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 60%;">报修情况</th>
+                    <th style="width: 20%;">处理时间</th>
+                    <th>状态</th>
+                  </tr>
+                </thead>
+                <tbody id="repair-table">
+                  <!-- <tr class="info">
+                    <td>
+                      退宿申请<br>
+                      拟退宿时间：2022.6.13<br>
+                      退宿原因：毕业
+                    </td>
+                    <td>2022.7.4</td>
+                    <td>通过</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+        <div class="copy">
+          <p>Copyright &copy; 2023.智能化宿舍管理系统研发团队 All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+  <!-- Nav CSS -->
+  <link href="css/custom.css" rel="stylesheet">
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="js/metisMenu.min.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+
+</html>

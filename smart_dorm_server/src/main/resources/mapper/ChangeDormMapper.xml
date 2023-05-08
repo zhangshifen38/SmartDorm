@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.dormsys.mapper.MapperChangeDorm">
+    <insert id="insChangeDorm" parameterType="com.app.dormsys.entities.ChangeDorm">
+        insert into changedorm_applications values (#{changedormno},#{sdate},#{edate},
+                                               #{changedormdate},#{state},
+                                               #{reason},#{students_sno},
+                                               #{dorms_dno},#{buildings_bno})
+    </insert>
+    <select id="selChangeDorm" resultType="com.app.dormsys.entities.ChangeDorm">
+        select * from changedorm_applications where students_sno=#{sno}
+    </select>
+    <select id="selChangeDormCount" resultType="Integer">
+        select count(*) from changedorm_applications where changedormno like #{cdno}
+    </select>
+</mapper>

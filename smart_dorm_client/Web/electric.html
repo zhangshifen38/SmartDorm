@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>electricity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+  <script
+    type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel='stylesheet' type='text/css' />
+  <link href="css/font-awesome.css" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="js/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+  <!----webfonts--->
+  <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+  <!---//webfonts--->
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src=".\images\neu_logo2.png" width="150px" style="margin-top: 5px;">
+        <!-- <a class="navbar-brand" href="index.html"></a> -->
+      </div>
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" value="Search..." onfocus="this.value = '';"
+          onblur="if (this.value == '') {this.value = 'Search...';}">
+      </form>
+      <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+          <ul class="nav" id="side-menu">
+            <li>
+              <a href="main.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>主页面</a>
+            </li>
+            <li>
+              <a href="validation.html">
+                <i class="fa fa-user nav_icon"></i> 个人信息
+                <!-- <span class="fa arrow"></span> -->
+              </a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-indent nav_icon"></i> 退/换宿申请<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="accom-check-out.html">退宿申请</a>
+                </li>
+                <li>
+                  <a href="accom-change.html">换宿申请</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="accom-leave.html"><i class="fa fa-users nav_icon"></i> 请假申请</a>
+            </li>
+            <li>
+              <a href="electric.html"><i class="fa fa-rmb nav_icon"></i> 电费查询</a>
+            </li>
+            <li>
+              <a href="repair.html"><i class="fa fa-comment nav_icon"></i> 报修</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+      </div>
+      <!-- /.navbar-static-side -->
+    </nav>
+    <div id="page-wrapper">
+      <div class="col-md-12 graphs">
+        <div class="xs">
+          <h3>电费查询</h3>
+          <p>宿舍楼栋：F05 B103</p>
+          <div class="bs-example4" id="chart-electric" style="height: 500px;"></div>
+          <div class="bs-example4" data-example-id="contextual-table">
+            <h4><strong>缴费记录</strong></h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>缴费日期</th>
+                  <th>缴费金额</th>
+                  <th>宿舍楼栋号</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="active">
+                  <td>2023年4月20日</td>
+                  <td>5</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr>
+                  <td>2023年4月25日</td>
+                  <td>5</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr class="success">
+                  <td>2023年4月26日</td>
+                  <td>10</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr>
+                  <td>2023年4月27日</td>
+                  <td>15</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr class="info">
+                  <td>2023年5月1日</td>
+                  <td>5</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr>
+                  <td>2023年5月3日</td>
+                  <td>10</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr class="warning">
+                  <td>2023年5月5日</td>
+                  <td>20</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr>
+                  <td>2023年5月7日</td>
+                  <td>30</td>
+                  <td>F05 B103</td>
+                </tr>
+                <tr class="danger">
+                  <td>2023年5月9日</td>
+                  <td>10</td>
+                  <td>F05 B103</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="panel-body1">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+          <!-- <div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}"
+            data-widget-static="">
+            <div class="panel-body no-padding">
+              <table class="table table-striped">
+                <thead>
+                  <tr class="warning">
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> -->
+          <!-- <div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}"
+            data-widget-static="">
+            <div class="panel-heading">
+              <h2>Warning Table</h2>
+              <div class="panel-ctrls" data-actions-container=""
+                data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i
+                    class="ti ti-angle-down"></i></span></div>
+            </div>
+            <div class="panel-body no-padding" style="display: block;">
+              <table class="table table-striped">
+                <thead>
+                  <tr class="warning">
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> -->
+          <div class="bs-example4" data-example-id="simple-responsive-table">
+            <!-- <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+            <!-- /.table-responsive -->
+
+            <!-- /.table-responsive -->
+            <div class="form-group">
+              <button type="button" style="margin-left: 45%;" class="btn-primary">缴费</button>
+            </div>
+          </div>
+        </div>
+        <div class=" copy_layout">
+          <p>Copyright &copy; 2023.智能化宿舍管理系统研发团队 All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+  <!-- Nav CSS -->
+  <link href="css/custom.css" rel="stylesheet">
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="js/metisMenu.min.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+
+<script type="text/javascript">
+  var chartDom = document.getElementById('chart-electric');
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  option = {
+    responsive: true,
+    title: {
+      text: '电费统计'
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#283b56'
+        }
+      }
+    },
+    xAxis: {
+      type: 'category',
+      data: [
+        '2023/4/28',
+        '2023/4/29',
+        '2023/4/30',
+        '2023/5/1',
+        '2023/5/2',
+        '2023/5/3',
+        '2023/5/4'
+      ],
+    },
+    yAxis: {
+      type: 'value',
+      name: '元',
+      min: 0,
+      max: 15
+    },
+    series: [
+      {
+        data: [5.78, 6.01, 8.85, 9.95, 7.74, 7.07, 9.98],
+        type: 'bar',
+        showBackground: true,
+        backgroundStyle: {
+          color: 'rgba(180, 180, 180, 0.2)'
+        }
+      }
+    ]
+  };
+
+  option && myChart.setOption(option);
+
+</script>
+
+</html>
